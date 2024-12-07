@@ -36,3 +36,9 @@
     transform: rotate(360deg);
   }
 }
+
+.navbar .dropdown-menu {
+  right: 0; /* Aligns the dropdown perfectly to the right */
+  left: auto;
+}
+

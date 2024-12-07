@@ -11,3 +11,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.navbar .dropdown-menu {
+  right: 0; /* Aligns the dropdown perfectly to the right */
+  left: auto;
+}
+
