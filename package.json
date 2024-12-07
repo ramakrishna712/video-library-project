@@ -2,6 +2,7 @@
   "name": "videolibrary-app",
   "version": "0.1.0",
   "private": true,
+  "homepage": ".",
   "dependencies": {
     "@popperjs/core": "^2.11.8",
     "@reduxjs/toolkit": "^2.4.0",
@@ -15,6 +16,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.1",
+    "firebase": "^11.0.2",
     "formik": "^2.4.6",
     "mongodb": "^6.11.0",
     "mongoose": "^8.8.3",
@@ -55,6 +57,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "webpack": "^5.96.1",
     "webpack-cli": "^5.1.4"
   },
@@ -64,5 +67,4 @@
   "author": "",
   "license": "ISC",
   "proxy": "http://localhost:1120"
-
 }
