@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 export function Signout(){
 
 
-    const[cookies,setCookie,removeCookie] = useCookies('admin-id');
+    const[cookies,removeCookie] = useCookies('admin-id');
     let navigate = useNavigate();
 
 

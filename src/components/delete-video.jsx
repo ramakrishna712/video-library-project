@@ -31,7 +31,7 @@ export function AdminDeleteVideo() {
             <h3>Delete Video</h3>
             <p>Are you sure?</p>
             <div className="card w-25">
-                <iframe src={videos[0].Url} width="100%" ></iframe>
+                <iframe src={videos[0].Url} width="100%" title="vidoes" ></iframe>
             </div>
             <div className="card-body">
                 {videos[0].Title}

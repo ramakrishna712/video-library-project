@@ -1,8 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import logo from './logo.svg';
 import './App.css';
-import { useEffect, useState } from 'react';
 import { BrowserRouter, Route,Routes,Link } from 'react-router-dom';
 import { VideoLibraryHome } from './components/video-library-home';
 import { Signout } from './components/admin-signout';
@@ -21,10 +19,7 @@ import { AdminError } from './components/admin-error';
 
 function App() {
 
-  const [cookies,setCookie,removeCookie] = useCookies('admin-id');
-  useEffect(()=>{
-
-  },[])
+  const [cookies] = useCookies('admin-id');
   return (
     <div className="container-fluid bg-light text-dark min-vh-100">
     <BrowserRouter>

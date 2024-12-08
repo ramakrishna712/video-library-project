@@ -62,7 +62,7 @@ export function EditVideo() {
     useEffect(() => {
         LoadVideo();
         LoadCategories();
-    }, [apiUrl]);
+    },[apiUrl]);
 
     return (
         <div className="container-fluid">

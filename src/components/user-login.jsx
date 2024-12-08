@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 export function UserLogin() {
-  const [cookies, setCookie, removeCookie] = useCookies('user-id');
+  const [ cookie,setCookie] = useCookies('user-id');
   let navigate = useNavigate();
   const apiUrl = process.env.REACT_APP_API_URL
 

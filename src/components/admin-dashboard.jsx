@@ -20,7 +20,7 @@ export function AdminDashboard() {
 
     useEffect(() => {
         LoadVideos();
-    }, []);
+    },[]);
 
     return (
         <div className="container">

@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
-import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { addToSaveList } from "../slicers/video-slicer";
 import { Link } from "react-router-dom";
 
 export function UserDashBoard() {
-  const [cookies, setCookie, removeCookie] = useCookies(['user-id']);
+  const [cookies] = useCookies(['user-id']);
   const [categories, setCategories] = useState([{ CategoryId: 0, CategoryName: "" }]);
   const [videos, setVideos] = useState([
     { VideoId: 0, Title: "", Url: "", Description: "", Views: 0, Likes: 0, Dislikes: 0, CategoryId: 0 }
@@ -16,7 +15,7 @@ export function UserDashBoard() {
   const [savedVideos, setSavedVideos] = useState([])
   const apiUrl = process.env.REACT_APP_API_URL;
 
-  let params = useParams();
+ 
   const dispatch = useDispatch();
 
   function LoadCategories() {
@@ -79,11 +78,11 @@ export function UserDashBoard() {
   useEffect(() => {
     LoadCategories();
     LoadAllVideos();
-  }, []);
+  },[]);
 
   useEffect(() => {
     LoadSavedVideos(); 
-  }, []);
+  },[]);
 
   useEffect(() => {
     if (selectedCategoryId !== null) {
@@ -120,7 +119,7 @@ export function UserDashBoard() {
           <div key={video.VideoId} className="col-12 col-sm-6 col-md-4 col-lg-3 p-2">
             <div className="card">
               <div className="card-header p-0" style={{ height: "220px" }}>
-                <iframe src={video.Url} width="100%" height="200" allowFullScreen></iframe>
+                <iframe src={video.Url} width="100%" height="200" title="videos" allowFullScreen></iframe>
               </div>
               <div className="fw-bold card-body text-center">{video.Title}</div>
               <div className="card-footer d-flex justify-content-around">
