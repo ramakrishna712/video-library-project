@@ -2,7 +2,7 @@
     "name": "videolibrary-app",
     "version": "0.1.0",
     "private": true,
-    "homepage": ".",
+    "homepage": "/",
     "dependencies": {
         "@popperjs/core": "^2.11.8",
         "@reduxjs/toolkit": "^2.4.0",
