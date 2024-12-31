@@ -7,10 +7,11 @@ import * as Yup from "yup";
 
 export function AdminLogin() {
     const [isLoading, setIsLoading] = useState(false);
-    const [cookie , setCookie] = useCookies(['admin-id']);
+    const [cookies, setCookie] = useCookies(['admin-id']);
     let navigate = useNavigate();
 
-    const apiUrl = process.env.REACT_APP_API_URL; 
+    const apiUrl = process.env.REACT_APP_API_URL;
+    console.log('API URL:', apiUrl); // Debugging
 
     const formik = useFormik({
         initialValues: {
@@ -22,22 +23,30 @@ export function AdminLogin() {
             Password: Yup.string().required("Password is required"),
         }),
         onSubmit: (admin) => {
+            console.log('Form Submitted:', admin); // Debugging
             setIsLoading(true);
-            axios.get(`${apiUrl}/get-admin`) 
+            axios.get(`${apiUrl}/get-admin`)
                 .then(response => {
-                    const isValidAdmin = response.data.some(
-                        (adm) => adm.UserId === admin.UserId && adm.Password === admin.Password
-                    );
-                    if (isValidAdmin) {
-                        setCookie('admin-id', admin.UserId);
-                        navigate("/admin-dashboard");
+                    console.log('API Response:', response.data); // Debugging
+                    if (Array.isArray(response.data)) {
+                        const isValidAdmin = response.data.some(
+                            (adm) => adm.UserId === admin.UserId && adm.Password === admin.Password
+                        );
+                        console.log('isValidAdmin:', isValidAdmin); // Debugging
+                        if (isValidAdmin) {
+                            setCookie('admin-id', admin.UserId);
+                            navigate("/admin-dashboard");
+                        } else {
+                            navigate('/admin-error');
+                        }
                     } else {
-                        navigate('/admin-error');
+                        console.error('Unexpected response format:', response.data); // Debugging
+                        alert('Unexpected server response.');
                     }
                 })
                 .catch(error => {
-                    console.error("Error fetching admin data:", error);
-                    alert("An error occurred while logging in. Please try again.");
+                    console.error('Error fetching admin data:', error); // Debugging
+                    alert('An error occurred while logging in. Please try again.');
                 })
                 .finally(() => setIsLoading(false));
         },
