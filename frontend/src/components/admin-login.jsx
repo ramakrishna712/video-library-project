@@ -1,6 +1,6 @@
 export function AdminLogin() {
     const [isLoading, setIsLoading] = useState(false);
-    const [setCookie] = useCookies(['admin-id']);
+    const [cookies, setCookie] = useCookies(['admin-id']);
     let navigate = useNavigate();
 
     const apiUrl = process.env.REACT_APP_API_URL; 
