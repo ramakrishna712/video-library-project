@@ -49,6 +49,19 @@ app.post("/register-user", async (req, res) => {
         res.status(500).send("Error registering user");
     }
 });
+app.get("/get-admin", async (req, res) => {
+    try {
+        const db = await connectToDb();
+        const adminData = await db.collection("admin").findOne({}); // Example for fetching admin data
+        if (!adminData) {
+            return res.status(404).send("Admin not found");
+        }
+        res.send(adminData);
+    } catch (error) {
+        res.status(500).send("Error fetching admin data");
+    }
+});
+
 
 app.get("/get-categories", async (req, res) => {
     try {
