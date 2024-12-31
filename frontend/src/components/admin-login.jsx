@@ -1,6 +1,13 @@
+import { useFormik } from "formik";
+import { useState } from "react";
+import { useCookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import * as Yup from "yup";
+
 export function AdminLogin() {
     const [isLoading, setIsLoading] = useState(false);
-    const [cookies, setCookie] = useCookies(['admin-id']);
+    const [cookie , setCookie] = useCookies(['admin-id']);
     let navigate = useNavigate();
 
     const apiUrl = process.env.REACT_APP_API_URL; 
@@ -18,19 +25,14 @@ export function AdminLogin() {
             setIsLoading(true);
             axios.get(`${apiUrl}/get-admin`) 
                 .then(response => {
-                    if (Array.isArray(response.data)) {
-                        const isValidAdmin = response.data.some(
-                            (adm) => adm.UserId === admin.UserId && adm.Password === admin.Password
-                        );
-                        if (isValidAdmin) {
-                            setCookie('admin-id', admin.UserId);
-                            navigate("/admin-dashboard");
-                        } else {
-                            navigate('/admin-error');
-                        }
+                    const isValidAdmin = response.data.some(
+                        (adm) => adm.UserId === admin.UserId && adm.Password === admin.Password
+                    );
+                    if (isValidAdmin) {
+                        setCookie('admin-id', admin.UserId);
+                        navigate("/admin-dashboard");
                     } else {
-                        console.error("Expected an array but got:", response.data);
-                        alert("Unexpected server response.");
+                        navigate('/admin-error');
                     }
                 })
                 .catch(error => {
