@@ -52,7 +52,7 @@ app.post("/register-user", async (req, res) => {
 app.get("/get-admin", async (req, res) => {
     try {
         const db = await connectToDb();
-        const adminData = await db.collection("admin").findOne({}); // Example for fetching admin data
+        const adminData = await db.collection("admin").find({}).toArray(); // Example for fetching admin data
         if (!adminData) {
             return res.status(404).send("Admin not found");
         }
